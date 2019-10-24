@@ -1,0 +1,24 @@
+/*
+  3 - Faça um algoritmo que determine e escreva:
+- a maior idade dos habitantes
+- a quantidade de indivíduos entre 18 e 35 anos
+- O algoritmo deve solicitar ao usuário se ele quer continuar ou parar.
+Quando o usuário digitar 0 o algoritmo para.
+*/
+
+#include <stdio.h>
+main(){
+    int i, idade, intervalo;
+    i = 1;
+    intervalo = 0;
+    while(i != 0){
+        printf("Idade do habitante\n");
+        scanf("%d",&idade);
+        if(idade >= 18 && idade <= 35){
+            intervalo++;
+        }
+        printf("-------------\nDigite:\n[0] Parar\n[1] Continuar\n-------------\n");
+        scanf("%d",&i);
+    }
+    printf("A quantidade de indivíduos entre 18 e 35 anos foi: %d",intervalo);
+}
