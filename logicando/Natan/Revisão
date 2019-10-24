@@ -1,0 +1,43 @@
+/*
+  1 - Escrever um algoritmo que leia um conjunto de 50 informações contendo, cada uma delas, a
+altura e o sexo de uma pessoa (código=1, masculino código=2, feminino), calcule e mostre o
+seguinte:
+a) a maior altura da turma.                                                     
+b) a média da altura dos homens.                                                
+c) a média da altura da turma
+*/
+#include <stdio.h>
+main(){
+    int i, idade, sexo, homens;
+    float altura, maiorAltura, totalAlturaH, mediaAlturaH, totalAltura, mediaAltura;
+    
+    i = 0;
+    homens = 0;
+    totalAlturaH = 0;
+    mediaAlturaH = 0;
+    totalAltura = 0;
+    mediaAltura = 0;
+    
+    while(i < 50){
+        printf("\nSexo do(a) aluno(a)\ncódigo = [1] masculino\ncódigo = [2] feminino\n");
+        scanf("%d",&sexo);
+        printf("Altura do(a) aluno(a)\n");
+        scanf("%f",&altura);
+        printf("idade do(a) aluno(a)\n");
+        scanf("%d",&idade);
+        if(altura > maiorAltura){ // Maior altura da turma
+            maiorAltura = altura;
+        }
+        if(sexo == 1){ // Altura dos homens
+            totalAlturaH = totalAlturaH + altura;
+            homens++;
+        }
+        totalAltura = totalAltura + altura; // Média da altura da turma
+        i++;
+    }
+    mediaAltura = totalAltura / i;
+    mediaAlturaH = totalAlturaH / homens;
+    printf("A maior altura da turma: %.2f\n", maiorAltura);
+    printf("A média da altura dos homens: %.2f\n", mediaAlturaH);
+    printf("A média da altura da turma: %.2f\n",mediaAltura);
+}
