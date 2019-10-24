@@ -1,0 +1,45 @@
+/*
+  2 - Foi feita uma pesquisa entre os 1000 habitantes de uma região para coletar os seguintes dados:
+sexo (0feminino, 1-masculino), idade e altura. Faça um algoritmo que leia as informações coletadas
+e mostre as seguintes informações:  
+a) média da idade do grupo;
+b) média da altura das mulheres;
+c) média da idade dos homens;
+*/
+
+#include <stdio.h>
+main(){
+    int i, sexo, idade, totalIdade, mulheres, homens;
+    float altura, mediaIdadeG, totalAlturaM, mediaAlturaM, mediaIdadeH, totalIdadeH;
+    i = 0;
+    totalIdade = 0;
+    totalAlturaM = 0;
+    totalIdadeH = 0;
+    homens = 0;
+    mulheres = 0;
+    while(i < 1000){ 
+        printf("\nSexo do(a) habitante\ncódigo = [1] masculino\ncódigo = [2] feminino\n");
+        scanf("%d",&sexo);
+        printf("Idade do(a) habitante\n");
+        scanf("%d",&idade);
+        printf("Altura do(a) habitante\n");
+        scanf("%f",&altura);
+        totalIdade = totalIdade + idade; // total para a média da idade do grupo.
+        if(sexo == 2){ 
+            totalAlturaM = totalAlturaM + altura; // total para a média das alturas das mulhres.
+            mulheres++;
+        } else {
+            if(sexo == 1){ // total para a média da idade dos homens
+                totalIdadeH = totalIdadeH + idade;
+                homens++;
+            }
+        }
+        i++;
+    }
+    mediaIdadeG = totalIdade / i; // média da idade do grupo.
+    mediaAlturaM = totalAlturaM / mulheres; // media da altura das mulheres.
+    mediaIdadeH = totalIdadeH / homens; // média da idade dos homens.
+    printf("Média da idade do grupo: %.2f\n",mediaIdadeG);
+    printf("Média da altura das mulheres: %.2f\n",mediaAlturaM);
+    printf("Média da idade dos homens: %.2f\n",mediaIdadeH);
+}
