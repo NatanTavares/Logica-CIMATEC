@@ -1,0 +1,51 @@
+/*  o percentual do votos válidos em relação ao total de eleitores,
+o percentual de brancos em relação ao total de eleitores
+o percentual de nulos em relação ao total de eleitores.                       */
+
+#include <stdio.h>
+#include <locale.h>
+
+int percentualValidos(int totalEleitores, int validos){ // percentual de votos validos.
+  return ((100 * validos) / totalEleitores);
+}
+
+int percentualBrancos(int totalEleitores,int totalBrancos){  // percentual de votos brancos.
+  return ((100 * totalBrancos) / totalEleitores);
+}
+
+int percentualNulos(int totalEleitores, int nulos){ // percentual de votos nulos.
+  return ((100 * nulos) / totalEleitores); 
+}
+
+main(){
+  setlocale(LC_ALL,"portuguese-brazilian");
+  
+  int totalEleitores, validos = 0, votosBrancos = 0, nulos = 0, op;
+  
+  printf("Quantos serão os eleitores?\n");
+  scanf("%d",&totalEleitores);
+  
+  for(int i = 0; i < totalEleitores; i++){
+    printf("Condição do voto %d\n[1] Voto Válido\t[2] Voto Branco\t[3] Voto Nulo\n",i + 1);
+    scanf("%d",&op);
+    switch(op){
+      case 1:
+        validos++;
+      break;
+      case 2:
+        votosBrancos++;
+      break;
+      case 3:
+        nulos++;
+    }
+  }
+  
+  int percentualVotosValidos = percentualValidos(totalEleitores, validos);
+  int percentualVotosBrancos = percentualBrancos(totalEleitores, votosBrancos);
+  int percentualVotosNulos = percentualNulos(totalEleitores, nulos);
+  
+  printf("\nPercentual de votos validos: %d porcento.\n",percentualVotosValidos);
+  printf("Percentual de votos brancos: %d porcento.\n",percentualVotosBrancos);
+  printf("Percentual de votos nulos: %d porcento. \n ",percentualVotosNulos);
+  
+}
