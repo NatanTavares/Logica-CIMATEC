@@ -1,0 +1,62 @@
+#include <conio.h>
+#include <stdlib.h> // necessário p/ as funções rand() e srand()
+#include <stdio.h>
+#include <time.h>   //necessário p/ função time()
+#include <locale.h>
+linha(int i,char x){
+    int j;
+    for(j=0;j<i;j++){
+        printf("%c",x);
+    }
+    printf("\n");
+}
+int main(){
+    setlocale(LC_ALL,"portguese");
+    srand(time(NULL));
+    
+    int i;
+    int rightNumber, userNumber;
+    int lifes = 1, limite;
+    int dificuldade;
+    linha(26,'=');
+    printf("Encontre o valor no vetor!\n");
+    printf("Limite de tentativa: ");
+    scanf("%d",&limite);
+    printf("Dificuldade\n[1] Ez\n[2] Tranquilo\n[3] Hard\n[4] Impossível\n");
+    scanf("%d",&dificuldade);
+    switch(dificuldade){
+        case 1: // Ez
+            rightNumber = rand() % 10; break;
+        case 2: // Tranquilo
+            rightNumber = rand() % 100; break;
+        case 3: // Hard
+            rightNumber = rand() % 999; break;
+        case 4: // Impossível
+            rightNumber = rand() % 9999; break;
+        default: // Good
+            printf("Dificuldade Nível DEUS ativado!\n");
+            rightNumber = rand() % 1000000000;
+    }
+    linha(26,'=');
+    printf("Entre com o numero:\n");
+    for(i=1;i>0;i++){
+        scanf("%d",&userNumber);
+        if(userNumber == rightNumber){ // Ganhou!
+            linha(44,'=');
+            printf("Você precisou de %d tentativa(s), Parabéns!\n",lifes);
+            i = -1;
+        } else { // Perdeu
+            lifes++;
+            if(lifes > limite){
+                i = -1;
+                printf("Você perdeu!\nO numero certo era %d",rightNumber);
+            } else {
+                if(userNumber > rightNumber){
+                    printf("tente um valor MENOR!\n");
+                } else {
+                    printf("tente um valor MAIOR!\n");
+                }
+            }
+        }  
+    }
+}
