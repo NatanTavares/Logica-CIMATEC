@@ -26,15 +26,19 @@ int main(){
     scanf("%d",&dificuldade);
     switch(dificuldade){
         case 1: // Ez
+            printf("Dificuldade Nível Ez ativado!\nVariedade entre 0 a 10\n");
             rightNumber = rand() % 10; break;
         case 2: // Tranquilo
+            printf("Dificuldade Nível Tranquilo ativado!\nVariedade entre 0 a 100\n");
             rightNumber = rand() % 100; break;
         case 3: // Hard
+            printf("Dificuldade Nível Hard ativado!\nVariedade entre 0 a 1000\n");
             rightNumber = rand() % 999; break;
         case 4: // Impossível
+            printf("Dificuldade Nível Impossível ativado!\nVariedade entre 0 a 10000\n");
             rightNumber = rand() % 9999; break;
         default: // Good
-            printf("Dificuldade Nível DEUS ativado!\n");
+            printf("Dificuldade Nível Good ativado!\nVariedade entre 0 a 1000000000\n");
             rightNumber = rand() % 1000000000;
     }
     linha(26,'=');
@@ -48,6 +52,7 @@ int main(){
         } else { // Perdeu
             lifes++;
             if(lifes > limite){
+                linha(26,'=');
                 i = -1;
                 printf("Você perdeu!\nO numero certo era %d",rightNumber);
             } else {
