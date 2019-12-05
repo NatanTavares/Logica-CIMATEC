@@ -1,0 +1,57 @@
+/*      solicitar um número do teclado e utilize uma função para pesquisar se 
+    esse número existe no vetor. Se existir, imprimir em qual posição do vetor.
+    Se não existir, imprimir mensagem: “número não existe”.                   */
+#include <stdio.h>
+int i;
+
+preencherVetor(int vetor[],int x){
+    for(i=0;i<x;i++){
+        printf("Entre com o valor: ");
+        scanf("%d",&vetor[i]);
+    }
+}
+
+imprimirVetor(int vetor[],int x){
+    printf("Indice | Valor\n");
+    for(i=0;i<x;i++){
+        printf("%d      | %d\n",i,vetor[i]);
+    }
+}
+
+localizar(int vetor[], int x){
+    int numeroProcurado;
+    int achei = 0, ordem[10];
+    
+    printf("Digite um numero inteiro: ");
+    scanf("%d",&numeroProcurado);
+    
+    for(i=0;i<x;i++){
+        if(numeroProcurado == vetor[i]){ // Achou
+            ordem[achei] = i;
+            achei++;
+        } else { // Não achou!
+            if(i==x - 1 && numeroProcurado!=vetor[i] && achei==0){
+                printf("Não achei\n");
+            }
+        }
+    }
+    
+    if(achei != 0){     // Imprimir indices para o usuario caso ache o numero.
+        printf("Achei esse numero %d vezes\n",achei);
+        printf("Estão localizados nos indices: ");
+        for(i=0;i<achei;i++){
+            printf("%d\t",ordem[i]);
+        }
+    }
+}
+
+main(){
+    int vetor[10], tamanhoVetor;
+    
+    printf("Tamanho do vetor: ");
+    scanf("%d",&tamanhoVetor);
+
+    preencherVetor(vetor, tamanhoVetor);
+    imprimirVetor(vetor, tamanhoVetor);
+    localizar(vetor, tamanhoVetor);
+}
