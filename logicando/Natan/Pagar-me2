@@ -1,0 +1,106 @@
+/*
+    10 - Utilizando o conceito de Estrutura, elabore um programa que guarde as 
+    informações de 5 clientes em um vetor e os dados dos seus respectivos carros. 
+    Utilize função para preenchimento e impressão dos dados do vetor
+        Nome do cliente
+        Marca do veículo
+        Modelo do veículo
+        Cor do veículo
+        Ano do veículo
+
+    - mostrar todos os dados onde o ano do carro for maior que 2010
+    - mostrar o modelo de todos os veículos
+    - mostrar a cor do carro de Ana
+*/
+#include <stdio.h>
+#include <string.h>
+int i;
+int maior2010 = 0;
+
+typedef struct cadastro{
+    char nome[10];
+    char marcaCarro[20];
+    char modeloCarro[20];
+    char corCarro[10];
+    int ano;
+} Cadastro;
+
+preencher(Cadastro vetor[], int x){
+    for(i=0;i<x;i++){
+        printf("Entre com o NOME: ");
+        scanf("%s",&vetor[i].nome);
+        
+        printf("Entre com a MARCA do CARRO: ");
+        scanf("%s",&vetor[i].marcaCarro);
+        
+        printf("Entre com o MODELO do CARRO: ");
+        scanf("%s",&vetor[i].modeloCarro);
+        
+        printf("Entre com a COR do CARRO: ");
+        scanf("%s",&vetor[i].corCarro);
+        
+        printf("Entre com o ANO do CARRO: ");
+        scanf("%d",&vetor[i].ano);
+    }
+}
+
+imprimir(Cadastro vetor[], int x){
+    printf("\n=====     Dados dos clientes    =====\n");
+    for(i=0;i<x;i++){
+        printf("Nome: %s\nMarca do Carro: %s\nModelo do Carro: %s\n",vetor[i].nome,vetor[i].marcaCarro,vetor[i].modeloCarro);
+        printf("Cor do Carro: %s\nAno do Carro: %d",vetor[i].corCarro,vetor[i].ano);
+    }
+}
+
+carro2010Mais(Cadastro vetor[],int x){
+    printf("\n=====        Carros novos       =====\n");
+    for(i=0;i<x;i++){
+       if(vetor[i].ano > 2010){
+            maior2010++;
+            printf("\nNome: %s\nMarca do Carro: %s\nModelo do Carro: %s\n",vetor[i].nome,vetor[i].marcaCarro,vetor[i].modeloCarro);
+            printf("Cor do Carro: %s\nAno do Carro: %d\n",vetor[i].corCarro,vetor[i].ano);
+       }
+    }
+    if(maior2010 == 0){
+        printf("Não houveram carros do ano 2011/2019\n");
+    }
+}
+
+imprimirModelo(Cadastro vetor[],int x){
+    printf("\n=====     Modelos dos Carros    =====\n");
+    for(i=0;i<x;i++){
+       printf("%d\t%s\n",i,vetor[i].modeloCarro); 
+    }
+}
+
+
+acharCorCliente(Cadastro vetor[],int x,char corCarroCliente){ // mostrar a cor do carro de Ana.
+    int achou;
+    
+    for(i=0;i<x;i++){
+        achou = strcmp(vetor[i].nome,corCarroCliente);
+        if(achou == 0){
+            printf("A cor do carro de %s e: %s",corCarroCliente,vetor[i].corCarro);
+        }
+    }
+}
+main(){
+    Cadastro cliente[5];
+    char corCarroCliente[10];
+    
+    preencher(cliente,3);
+    
+    //imprimir(cliente,3);
+    
+    
+    //carro2010Mais(cliente,3);
+    
+    
+    //imprimirModelo(cliente,3);
+    
+    printf("\n========================================\n");
+    printf("\nPesquisar a cor do carro (Digite o nome do cliente): ");
+    scanf("%s",&corCarroCliente);
+    
+    acharCorCliente(cliente,3,corCarroCliente);
+}
