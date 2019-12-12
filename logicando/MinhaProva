@@ -1,0 +1,163 @@
+#include <stdio.h>
+contAlunos=0; // Contador de alunos cadastrados automatico.
+int i;
+int matricula = 1;
+
+typedef struct{
+    char nomeAluno[50];
+    char nomeCurso[80];
+    int matricula;
+    float nota1;
+    float nota2;
+    float nota3;
+} Cadastro;
+
+preencherDados(Cadastro alunos[], int x){
+    // Preencher cadastros em sequência.
+    for(i=0;i<x;i++){
+        printf("Entre com o NOME do ALUNO: ");//      Nome do Aluno.
+        scanf("%s",alunos[contAlunos].nomeAluno);
+            
+        printf("Entre com o NOME do CURSO: ");//      Nome do Curso.
+        scanf("%s",alunos[contAlunos].nomeCurso);
+            
+        //printf("Entre com o numero da MATRICULA: ");//      Numero da Matricula.
+        //scanf("%d",&alunos[contAlunos].matricula);
+            
+        //      Notas 1, 2 e 3.
+        printf("Entre com a PRIMEIRA NOTA: ");//      1
+        scanf("%f",&alunos[contAlunos].nota1);
+            
+        printf("Entre com a SEGUNDA NOTA: ");//      2
+        scanf("%f",&alunos[contAlunos].nota2);
+            
+        printf("Entre com a TERCEIRA NOTA: ");//      3
+        scanf("%f",&alunos[contAlunos].nota3);
+        printf("\n");
+        
+        
+        alunos[i].matricula = matricula;
+        matricula++;
+        
+        contAlunos++;
+    } 
+}
+
+imprimirDados(Cadastro alunos[]){
+    int i;
+    printf("========== Dados ===========\n");
+    for(i=0;i<contAlunos;i++){
+        printf("Numero da matricula: %d\n",alunos[i].matricula);
+        printf("Nome do aluno: %s\n",alunos[i].nomeAluno);
+        printf("Nome do curso: %s\n",alunos[i].nomeCurso);
+        printf("Nota 1: %.1f\n",alunos[i].nota1);
+        printf("Nota 2: %.1f\n",alunos[i].nota2);
+        printf("Nota 3: %.1f\n\n",alunos[i].nota3);
+    }
+    printf("============================\n");
+}
+
+localizarAlunoNome(Cadastro alunos[], int y, char nome[50]){
+    int r;
+    int achou = 0;
+    for (i=0;i<y;i++){  
+        r=strcmp(alunos[i].nomeAluno, nome);
+        if (r==0){
+            achou = 1;
+        }
+        if(achou == 1){
+            printf("\nNome: %s\nMatricula: %d\n",alunos[i].nomeAluno, alunos[i].matricula);
+    	    printf("Curso: %s\nNota da prova 1: %.2f",alunos[i].nomeCurso, alunos[i].nota1);
+    	    printf("\nNota da prova 2: %.2f\nNota da prova 3: %.2f\n", alunos[i].nota2, alunos[i].nota3);
+        }
+    }
+    if(achou != 1){
+        printf("\nAluno nao cadastrado\n");
+    }
+    
+}
+
+menu(){
+    printf("[0] Sair\n[1] Imprimir os dados\n[2] Continuar\n");
+    printf("[3] Localizar\n");
+}
+
+main(){
+    int op; // switch case
+    Cadastro alunos[50];
+    char nomeProcurado[50]; // localizarAlunoNome();
+    int x;  // Numero de cadastros seguidos.
+    
+    do{
+        printf("[0] Sair\n[1] Cadastrar Alunos\n");
+//      printf("[2] Imprimir todos os dados dos alunos\nLocalizar\n");
+        scanf("%d",&op);
+        
+        switch(op){ // Menu inicial
+            case 1: // Cadastrar alunos
+                op = 0;
+                do{
+                    printf("Quantos alunos cadastrar\nDigite [0] para adicionar individualmente: ");
+                    scanf("%d",&x);
+                    if(x > 0){  
+                        preencherDados(alunos,x);
+                        menu();
+                        scanf("%d",&op);
+                        switch(op){
+                            case 1:
+                                imprimirDados(alunos);
+                                printf("Mais algumas coisa?\n");
+                                // scanf(op);
+                                op=0;// finalizando.
+                            break;
+                            case 3:
+                                printf("\n-- Localizar Aluno --\nEntre com o nome: ");
+                                scanf("%s",nomeProcurado);
+                                localizarAlunoNome(alunos,contAlunos,nomeProcurado);
+                                //printf(""); caso seja necessario mais de uma pesquisa.
+                                op=0; // finalizando.
+                            break;
+                        }
+                        
+                    } else {
+                        do{ // preencher individual.
+                            x = 1;
+                            preencherDados(alunos,x);
+                            menu();
+                            scanf("%d",&op);
+                            switch(op){
+                                case 1:
+                                    imprimirDados(alunos);
+                                    printf("Mais algumas coisa?\n");
+                                    // scanf(op);
+                                    op=0; // finalizando
+                                break;
+                                case 3:
+                                    printf("\n-- Localizar Aluno --\nEntre com o nome: ");
+                                    scanf("%s",nomeProcurado);
+                                    localizarAlunoNome(alunos,contAlunos,nomeProcurado);
+                                    //printf(""); caso seja necessario mais de uma pesquisa.
+                                op=0; // finalizando.
+                                break;
+                            }
+                            if(op == 3){
+                                printf("\n-- Localizar Aluno --\nEntre com o nome: ");
+                                scanf("%s",nomeProcurado);
+                                localizarAlunoNome(alunos,contAlunos,nomeProcurado);
+                                op=0; // finalizando
+                            }
+                        } while(op == 2);
+                    }
+                    if(op == 1){
+                        imprimirDados(alunos);
+                    }
+                } while(op != 0);
+            break;
+            case 2:
+                op = 0;
+                imprimirDados(alunos);
+                printf("Nenhum aluno cadastrado!\n");
+            break;
+        }
+    } while(op != 0);
+}
