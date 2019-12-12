@@ -1,0 +1,104 @@
+/*Elaborar um programa em C para guardar os dados de 50 alunos. Todos os alunos são identificados
+por uma matrícula que diferencia um dos outros. O cadastro de alunos deverá possuir os seguintes
+campos: - Matrícula, Nome, Curso, nota1, nota2 e nota3. Utilizando os conceitos de (função, vetor e
+Struct) desenvolva as funcionalidades abaixo.
+O programa deverá possuir um menu com as seguintes opções:
+- Cadastrar Alunos
+- Imprimir todos os dados dos alunos*/
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+
+int i;
+
+	typedef struct dados_aluno{
+		char nome[50];
+		char curso[50];
+		int matricula;
+		float nota1;
+		float nota2;
+		float nota3;
+	}dados_aluno;
+	
+	cadastro(dados_aluno x[], int y){
+		printf("\n\n========== FICHA DE CADASTRO ===========\n");
+		for(i=0;i<y;i++){
+				printf("Digite o nome do aluno:");
+			scanf("%s", &x[i].nome);
+				printf("\nDigite o curso: ");
+			scanf("%s", &x[i].curso);
+				printf("\nDigite a matrícula:");
+			scanf("%i", &x[i].matricula);
+				printf("\nDigite a Nota 1: ");
+			scanf("%f", &x[i].nota1);
+				printf("\nDigite a Nota 2: ");
+			scanf("%f", &x[i].nota2);
+				printf("\nDigite a Nota 3: ");
+			scanf("%f", &x[i].nota3);
+		}
+	}
+	
+	imprimir(dados_aluno x[], int y){
+		printf("\n\n========== LISTA DE CADASTROS ===========\n");
+		for(i=0;i<y;i++){
+			printf("\nNome do aluno: %s\n", x[i].nome);
+			printf("Curso: %s\n", x[i].curso);
+			printf("Matrícula: %i\n", x[i].matricula);
+			printf("Nota da prova 1: %.2f\n", x[i].nota1);
+			printf("Nota da prova 2: %.2f\n", x[i].nota2);
+			printf("Nota da prova 2: %.2f\n", x[i].nota3);
+		}
+	}
+	
+/*procurar(dados_aluno x[], int y, char n[50])
+{
+	int r;
+		for (i=0;i<y;i++){
+			printf("\nDigite o nome do aluno: \n");
+			scanf("%s", &n);
+			r=strcmp(n, x[i].nome);
+			
+			if (r==0){
+				printf("Nome: %s \n Curso: %s \n Matricula: %i \n Nota da prova 1: %.2f \n Nota da prova 2: %.2f \n Nota da prova 3: %.2f \n",x[i].nome,x[i].curso,x[i].matricula,x[i].nota1,x[i].nota2,x[i].nota3 );
+			}
+		}
+}*/
+
+main(){
+	setlocale(LC_ALL, "portuguese");
+
+	int varmenu, j=0;/*repeticao do menu*/
+	dados_aluno v[2];
+	char n[50];
+	
+		while(j<1){
+		printf("\n========== MENU ==========\n");
+		printf("Selecione uma opção abaixo:\n\n");
+		printf("1 - CADASTRAR ALUNOS\n");
+		printf("2 - IMPRIMIR TODOS OS DADOS DOS ALUNOS\n");
+		printf("3 - LOCALIZAR O ALUNO\n");
+		printf("0 - FINALIZAR O PROGRAMA\n");
+		scanf("%i", &varmenu);
+			switch(varmenu){
+				case 0: 
+					printf("Fim do programa\n");
+					break;
+				case 1:
+					cadastro(v, 2);
+					j--;
+					break;
+				case 2: 
+					imprimir(v, 2);
+					j--;
+					break;
+			/*	case 3:
+					procurar(v, 2, n);
+					break;*/
+				default: 
+					printf("\n\nDigite apenas 0, 1 ou 2!!\n\n");
+					j--;
+			}
+			j++;
+		}
+
+}
