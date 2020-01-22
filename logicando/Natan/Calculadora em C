@@ -1,0 +1,74 @@
+#include <stdio.h>
+int i;
+float number1, number2;
+
+linhaDiv(int x, char simbolo){ // função utilizada para a organização do conteúdo.
+    for(i=0;i<x;i++){
+        printf("%c",simbolo);
+    }
+    printf("\n");
+}
+
+capturandoValores(){
+    printf(" Entre com o PRIMEIRO valor: ");
+    scanf("%f",&number1);
+    printf(" Entre com o SEGUNDO valor: ");
+    scanf("%f",&number2);
+}
+
+int main(){
+    int op = 1;
+    
+    linhaDiv(32,'=');
+    printf("        Calculadora em C\n");
+    linhaDiv(32,'=');
+    
+    do {
+        printf(" Selecione a operação desejada:\n");
+        printf("[0] Sair\n[1] Somar\n[2] Subtrair\n[3] Multiplicar\n[4] Dividir\n");
+        scanf("%d",&op);
+        linhaDiv(32,'=');
+        
+        switch(op){
+            case 0: break; // Case 0 necessario para não cair em default.
+            
+            case 1: // Soma.
+                printf("             SOMA\n");
+                capturandoValores();
+                printf(" %.1f + %.1f = %.2f\n",number1,number2,(number1 + number2));
+                linhaDiv(32,'=');
+            break;
+            
+            case 2: // Subtração.
+                printf("            SUBTRAÇÃO\n");
+                capturandoValores();
+                printf(" %.1f - %.1f = %.2f\n",number1,number2,(number1 - number2));
+                linhaDiv(32,'=');
+            break;
+            
+            case 3: // Multiplicação.
+                printf("          MULTIPLICAÇÃO\n");
+                capturandoValores();
+                printf(" %.1f x %.1f = %.2f\n",number1,number2,(number1 * number2));
+                linhaDiv(32,'=');
+            break;
+            
+            case 4: // Divisão.
+                printf("            DIVISÃO\n");
+                capturandoValores();
+                printf(" %.1f / %.1f = %.2f\n",number1,number2,(number1 / number2));
+                linhaDiv(32,'=');
+            break;
+            
+            default: // Tratamento de erro.
+                printf(" Operação indisponível\n");
+                printf("[0] Sair\n[1] Alterar operação\n");
+                scanf("%d",&op);
+                linhaDiv(32,'=');
+        }
+        
+    } while(op != 0);
+    
+    printf("          Usuário saiu\n\n    Contato natan@gmail.com\n");
+    linhaDiv(32,'=');
+}
