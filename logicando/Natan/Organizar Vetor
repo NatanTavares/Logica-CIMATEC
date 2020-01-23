@@ -1,0 +1,55 @@
+#include <stdio.h>
+int i, j;
+int aux;
+void preecherVetor(int n, int vetor[]){
+    printf("Entre com alguns valores\n");
+    for(i = 0; i < n; i++){
+        scanf("%d",&vetor[i]);
+    }
+}
+void ordemCrescente(int n,int vetor[]){
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n; j++){
+            if(vetor[j] > vetor[j + 1]){
+                aux = vetor[j]; 
+                vetor[j] = vetor[j + 1]; 
+                vetor[j + 1] = aux; 
+            }
+        }
+    }
+}
+void ordemDecrescente(int n, int vetor[]){
+    for(i = 0; i < n; i++){
+        for(j = 0; j < n; j++){
+            if(vetor[j] < vetor[j + 1]){
+                aux = vetor[j];
+                vetor[j] = vetor[j + 1];
+                vetor[j + 1] = aux;
+            }
+        }
+    }
+}
+void imprimirVetor(int n, int vetor[]){
+    for(i = 0; i < n; i++){
+        printf("%d\t",vetor[i]);
+    }
+}
+int main(void){
+    int v[8];
+    int op;
+    preecherVetor(8,v);
+    printf("Opções abaixo:\n[1] Decrescente\n[2] Crescente\n");
+    scanf("%d",&op);
+    switch(op){
+        case 1:
+            printf("Ordem Decrescente\n");
+            ordemDecrescente(7,v);
+        break;
+        case 2:
+            printf("Ordem Crescente\n");
+            ordemCrescente(7,v);
+        break;
+        default: printf("\n\nERROR\n\n");
+    }
+    imprimirVetor(8,v);
+}
